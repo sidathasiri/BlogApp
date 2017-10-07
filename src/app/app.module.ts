@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { HomeComponent } from './home/home.component';
 import  { NavbarComponent } from './shared/navbar/navbar.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule
