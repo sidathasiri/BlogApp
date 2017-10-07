@@ -6,13 +6,26 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot, Router
 } from '@angular/router';
+// let firebase = require('firebase');
+import * as firebase from 'firebase';
 
 @Injectable()
 
 export class UserService implements CanActivate{
   userLoggedIn = false;
+  loggedInUser: string;
+  authUser: any
 
-  constructor(private router: Router){}
+  constructor(private router: Router) {
+    firebase.initializeApp({
+      apiKey: 'AIzaSyC_Wj_Qm6anehLW9ILmSbSuhgFWSuXxh4A',
+      authDomain: 'blogapp-56dc8.firebaseapp.com',
+      databaseURL: 'https://blogapp-56dc8.firebaseio.com',
+      projectId: 'blogapp-56dc8',
+      storageBucket: 'blogapp-56dc8.appspot.com',
+      messagingSenderId: '116262975286'
+    });
+  }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const url: string = state.url;
@@ -27,5 +40,39 @@ export class UserService implements CanActivate{
     this.router.navigate(['/admin/signin']);
     return false;
 
+  }
+
+  register(email: string, password: string) {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .catch(function (error) {
+        alert(error);
+      });
+  }
+
+  verifyUser() {
+    this.authUser = firebase.auth().currentUser;
+    if(this.authUser) {
+      alert('welcome user');
+      this.loggedInUser = this.authUser.email;
+      this.userLoggedIn = true;
+      this.router.navigate(['/admin']);
+    }
+  }
+
+  login(email: string, password: string) {
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .catch(function (error) {
+        alert(error);
+      });
+  }
+
+  logout() {
+    this.userLoggedIn = false;
+    firebase.auth().signOut()
+      .then(function () {
+        alert('logged out!');
+      }, function (error) {
+        alert('Unable to logout!');
+      });
   }
 }
