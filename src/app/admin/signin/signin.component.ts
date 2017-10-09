@@ -11,17 +11,21 @@ import { UserService } from '../adminShared/user.service';
 export class SigninComponent {
   email: string;
   password: string;
+  errorMsg: string = null;
   constructor(private userService: UserService, private router: Router){}
 
   login() {
-    this.userService.login(this.email, this.password);
+      this.errorMsg = null;
+      this.userService.login(this.email, this.password).then(()=>{}).catch((error)=>{this.errorMsg = error.message});
   }
 
   signup() {
+    this.errorMsg = null;
     this.router.navigate(['/admin/signup']);
   }
 
   cancel() {
+    this.errorMsg = null;
     this.router.navigate(['']);
   }
 

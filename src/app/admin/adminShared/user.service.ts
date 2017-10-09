@@ -48,7 +48,7 @@ export class UserService implements CanActivate{
       this.authUser = user;
       this.verifyUser();
     })
-      .catch(function (error) {
+    .catch(function (error) {
         alert(error);
       });
   }
@@ -63,15 +63,16 @@ export class UserService implements CanActivate{
   }
 
   login(email: string, password: string) {
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    return firebase.auth().signInWithEmailAndPassword(email, password)
     .then((user)=>{
       console.log(user);
       this.authUser = user;
       this.verifyUser();
+      return user;
     })
-      .catch(function (error) {
-        alert(error);
-      });
+    .catch((error)=>{
+        throw error;
+    });
   }
 
   logout() {
