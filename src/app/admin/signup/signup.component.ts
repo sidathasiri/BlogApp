@@ -14,6 +14,7 @@ export class SignupComponent {
   password1: string;
   password2: string;
   passwordFail: boolean = false;
+  errorMsg: string = null;
 
   constructor(private userService: UserService, private router: Router){}
 
@@ -22,7 +23,7 @@ export class SignupComponent {
       this.passwordFail = true;
     } else {
       this.passwordFail = false;
-      this.userService.register(this.email, this.password1);
+      this.userService.register(this.email, this.password1).then(()=>{}).catch((error)=>this.errorMsg = error.message);
     }
   }
 

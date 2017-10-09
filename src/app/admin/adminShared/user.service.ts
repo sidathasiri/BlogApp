@@ -43,13 +43,13 @@ export class UserService implements CanActivate{
   }
 
   register(email: string, password: string) {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    return firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((user)=>{
       this.authUser = user;
       this.verifyUser();
     })
     .catch(function (error) {
-        alert(error);
+        throw error;
       });
   }
 

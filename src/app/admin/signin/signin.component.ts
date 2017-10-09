@@ -15,17 +15,14 @@ export class SigninComponent {
   constructor(private userService: UserService, private router: Router){}
 
   login() {
-      this.errorMsg = null;
       this.userService.login(this.email, this.password).then(()=>{}).catch((error)=>{this.errorMsg = error.message});
   }
 
   signup() {
-    this.errorMsg = null;
     this.router.navigate(['/admin/signup']);
   }
 
   cancel() {
-    this.errorMsg = null;
     this.router.navigate(['']);
   }
 

@@ -17,7 +17,7 @@
 
     <div class="form-group row">
       <div class="col-sm-10">
-        <div *ngIf="errorMsg" style="color: red">{{errorMsg}}</div>
+          <div *ngIf="errorMsg" style="color: red; font-size: 15px; margin-bottom: 15px">{{errorMsg}}</div>
         <button type="submit" class="btn btn-primary" (click)="login()">Sign In</button>
         <button type="submit" class="btn btn-primary" (click)="signup()">Sign up</button>
         <button type="submit" class="btn btn-danger" (click)="cancel()">Cancel</button>
