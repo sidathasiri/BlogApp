@@ -44,6 +44,10 @@ export class UserService implements CanActivate{
 
   register(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((user)=>{
+      this.authUser = user;
+      this.verifyUser();
+    })
       .catch(function (error) {
         alert(error);
       });
@@ -52,7 +56,6 @@ export class UserService implements CanActivate{
   verifyUser() {
     this.authUser = firebase.auth().currentUser;
     if(this.authUser) {
-      alert('welcome user');
       this.loggedInUser = this.authUser.email;
       this.userLoggedIn = true;
       this.router.navigate(['/admin']);
@@ -61,6 +64,11 @@ export class UserService implements CanActivate{
 
   login(email: string, password: string) {
     firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((user)=>{
+      console.log(user);
+      this.authUser = user;
+      this.verifyUser();
+    })
       .catch(function (error) {
         alert(error);
       });

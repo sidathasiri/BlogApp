@@ -14,9 +14,7 @@ export class SigninComponent {
   constructor(private userService: UserService, private router: Router){}
 
   login() {
-    alert('in login');
     this.userService.login(this.email, this.password);
-    this.userService.verifyUser();
   }
 
   signup() {
