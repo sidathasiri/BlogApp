@@ -15,7 +15,8 @@ export class SigninComponent {
   constructor(private userService: UserService, private router: Router){}
 
   login() {
-      this.userService.login(this.email, this.password).then(()=>{}).catch((error)=>{this.errorMsg = error.message});
+    this.errorMsg = null;
+    this.userService.login(this.email, this.password).then(()=>{}).catch((error)=>{this.errorMsg = error.message});
   }
 
   signup() {
