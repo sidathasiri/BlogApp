@@ -6,7 +6,6 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot, Router
 } from '@angular/router';
-// let firebase = require('firebase');
 import * as firebase from 'firebase';
 
 @Injectable()
@@ -27,19 +26,22 @@ export class UserService implements CanActivate{
     });
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const url: string = state.url;
-    return this.verifyLogin(url);
-  }
-
-  verifyLogin(url: string): boolean {
-    if(this.userLoggedIn){
-      return true;
-    }
-
-    this.router.navigate(['/admin/signin']);
-    return false;
-
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+    var self = this;
+    return new Promise((resolve) => {
+      firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            self.authUser = user;
+            self.userLoggedIn = true;
+            resolve(true);
+          } else {
+            self.authUser = null;
+            self.userLoggedIn = false;
+            self.router.navigate(['/admin/signin']);
+            resolve(false);
+          }
+      });
+  });
   }
 
   register(email: string, password: string) {
