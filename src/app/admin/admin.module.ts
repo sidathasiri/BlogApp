@@ -9,6 +9,7 @@ import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 
 import { UserService } from './adminShared/user.service';
+import { BlogAdminService } from './adminShared/blog-admin.service';
 
 const AdminRoutes = [
   {
@@ -38,7 +39,8 @@ const AdminRoutes = [
     SignupComponent,
   ],
   providers: [
-    UserService
+    UserService,
+    BlogAdminService
   ]
 })
 
