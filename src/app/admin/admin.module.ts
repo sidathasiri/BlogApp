@@ -7,6 +7,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminMenuComponent } from './adminMenu/adminMenu.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
+import { BlogAdminComponent } from './blogAdmin/blog-admin.component';
 
 import { UserService } from './adminShared/user.service';
 import { BlogAdminService } from './adminShared/blog-admin.service';
@@ -37,6 +38,7 @@ const AdminRoutes = [
     AdminMenuComponent,
     SigninComponent,
     SignupComponent,
+    BlogAdminComponent
   ],
   providers: [
     UserService,
