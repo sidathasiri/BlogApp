@@ -23,6 +23,23 @@ export class BlogAdminService{
         .catch((error)=>{
             alert(error);
         });
+    }
 
+    editPost(update: Blog){
+        let dbRef = firebase.database().ref('blogPosts/').child(update.id)
+        .update({
+            title: update.title,
+            content: update.content
+        });
+    }
+
+    removePost(deletePost: Blog){
+        let dbRef = firebase.database().ref('blogPosts/').child(deletePost.id).remove();
+        let imageRef = firebase.storage().ref().child(`images/${deletePost.imgTitle}`)
+        .delete()
+        .then(()=>{})
+        .catch((error)=>{
+            console.log(error);
+        });
     }
 }
