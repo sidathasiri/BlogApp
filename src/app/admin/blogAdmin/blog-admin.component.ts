@@ -32,6 +32,7 @@ export class BlogAdminComponent implements OnInit{
         .then((snapshot)=>{
             let tmp: string[] = snapshot.val();
             this.blogPosts = Object.keys(tmp).map(key => tmp[key]);
+            console.log(this.blogPosts[0]);
         });
     }
 
@@ -45,7 +46,7 @@ export class BlogAdminComponent implements OnInit{
     }
 
     updatePost(single: Blog){
-        this.blogAdminService.editPost(single);
+        this.blogAdminService.editPost(this.singlePost);
         this.formDisplay = true;
     }
 
@@ -53,7 +54,6 @@ export class BlogAdminComponent implements OnInit{
         let verify = confirm('Are you sure want to delete post?');
         if(verify == true){
             this.blogAdminService.removePost(single);
-            this.router.navigate(['/admin']);
         }
     }
 
