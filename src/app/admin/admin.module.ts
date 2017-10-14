@@ -11,6 +11,7 @@ import { BlogAdminComponent } from './blogAdmin/blog-admin.component';
 
 import { UserService } from './adminShared/user.service';
 import { BlogAdminService } from './adminShared/blog-admin.service';
+import { BlogAddComponent } from './blogAdd/blod-add.component';
 
 const AdminRoutes = [
   {
@@ -39,7 +40,8 @@ const AdminRoutes = [
     AdminMenuComponent,
     SigninComponent,
     SignupComponent,
-    BlogAdminComponent
+    BlogAdminComponent,
+    BlogAddComponent
   ],
   providers: [
     UserService,

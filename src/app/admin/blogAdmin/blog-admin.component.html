@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" (click)="chooseMenu('add')">Add Post <span class="sr-only">(current)</span></a>
+          <a class="{{menuChoice=='add'? 'nav-link active' : 'nav-link'}}" (click)="chooseMenu('add')">Add Post <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item" *ngIf="menuChoice">
           <a class="nav-link" (click)="chooseMenu('')">Manage Blogs</a>
@@ -34,6 +34,6 @@
   </nav>
 
   <div [ngSwitch]="menuChoice">
-    <div *ngSwitchCase="'add'"><h1>Add Mode</h1></div>
+    <div *ngSwitchCase="'add'"><blog-add></blog-add></div>
     <div *ngSwitchDefault><h1>Default Case</h1></div>
   </div>
