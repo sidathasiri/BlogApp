@@ -55,6 +55,18 @@ export class UserService implements CanActivate{
       });
   }
 
+  getLoggedUser(){
+    return new Promise((resolve) => {
+      firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            resolve(user);
+          } else {
+            resolve();
+          }
+      });
+  });
+  }
+
   verifyUser() {
     this.authUser = firebase.auth().currentUser;
     if(this.authUser) {
@@ -81,7 +93,6 @@ export class UserService implements CanActivate{
     this.userLoggedIn = false;
     firebase.auth().signOut()
       .then(function () {
-        alert('logged out!');
       }, function (error) {
         alert('Unable to logout!');
       });
