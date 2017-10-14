@@ -17,6 +17,7 @@ const AdminRoutes = [
     path: 'admin',
     component: AdminComponent,
     children: [
+      {path: 'blog-admin', component: BlogAdminComponent, canActivate: [UserService]},
       {path: 'signin', component: SigninComponent},
       {path: 'signup', component: SignupComponent},
       {path: '', component: AdminMenuComponent, canActivate: [UserService]}
