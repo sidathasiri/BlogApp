@@ -13,6 +13,9 @@ export class BlogAdminComponent implements OnInit{
     theUser: any;
     menuChoice: string;
     blogPosts: Blog[];
+    formDisplay: boolean = true;
+    singlePost: Blog;
+
 
     constructor(private userService: UserService, private router: Router, private blogAdminService: BlogAdminService){}
 
@@ -30,6 +33,28 @@ export class BlogAdminComponent implements OnInit{
             let tmp: string[] = snapshot.val();
             this.blogPosts = Object.keys(tmp).map(key => tmp[key]);
         });
+    }
+
+    editPost(post: Blog){
+        this.singlePost = post;
+        this.formDisplay = false;
+    }
+
+    canclEdit(){
+        this.formDisplay = true;
+    }
+
+    updatePost(single: Blog){
+        this.blogAdminService.editPost(single);
+        this.formDisplay = true;
+    }
+
+    deletePost(single: Blog){
+        let verify = confirm('Are you sure want to delete post?');
+        if(verify == true){
+            this.blogAdminService.removePost(single);
+            this.router.navigate(['/admin']);
+        }
     }
 
     logout(){
