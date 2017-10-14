@@ -45,7 +45,7 @@ export class BlogAdminComponent implements OnInit{
         this.formDisplay = true;
     }
 
-    updatePost(single: Blog){
+    updatePost(){
         this.blogAdminService.editPost(this.singlePost);
         this.formDisplay = true;
     }
@@ -54,6 +54,7 @@ export class BlogAdminComponent implements OnInit{
         let verify = confirm('Are you sure want to delete post?');
         if(verify == true){
             this.blogAdminService.removePost(single);
+            this.router.navigate(['/admin']);
         }
     }
 

@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="{{menuChoice=='add'? 'nav-link active' : 'nav-link'}}" (click)="chooseMenu('add')">Add Post <span class="sr-only">(current)</span></a>
+          <a style="cursor: pointer" class="{{menuChoice=='add'? 'nav-link active' : 'nav-link'}}" (click)="chooseMenu('add')">Add Post <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item" *ngIf="menuChoice">
-          <a class="nav-link" (click)="chooseMenu('')">Manage Blogs</a>
+          <a style="cursor: pointer" class="nav-link" (click)="chooseMenu('')">Manage Blogs</a>
         </li>
         <li class="nav-item">
           <a class="nav-link " routerLink="/admin">Back tp Admin</a>
@@ -36,15 +36,18 @@
   <div [ngSwitch]="menuChoice">
     <div *ngSwitchCase="'add'"><blog-add></blog-add></div>
     <div *ngSwitchDefault>
-        <div *ngIf="formDisplay" class="container">
-            <div class="row" style="margin-top: 15px" *ngFor="let post of blogPosts">
-                <div class="card" style="width: 20rem;">
-                    <img class="card-img-top" [src]="post.img" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">{{post.title}}</h4>
-                        <p class="card-text">{{post.content | truncate: 130}}</p>
-                        <button (click)="editPost(post)" class="btn btn-primary">Edit</button>
-                        <button (click)="deletePost(post)" class="btn btn-danger">Delete</button>
+        <div class="row" class="container">
+          <h1>Recent Posts</h1>
+            <div *ngIf="formDisplay" style="">
+                <div style="margin-top: 15px; width: 20rem; display: inline-block; margin-left: 15px; min-height: 100px" *ngFor="let post of blogPosts">
+                    <div class="card" style="width: 20rem;">
+                        <img class="card-img-top" style="min-height: 15rem" [src]="post.img" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title">{{post.title}}</h4>
+                            <p class="card-text">{{post.content | truncate: 130}}</p>
+                            <button (click)="editPost(post)" class="btn btn-primary">Edit</button>
+                            <button (click)="deletePost(post)" class="btn btn-danger">Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,7 +81,7 @@
               
               <div class="form-group row">
                 <div class="col-sm-10">
-                  <button type="button" (click)="updatePost(post)" class="btn btn-primary">Update</button>
+                  <button type="button" (click)="updatePost()" class="btn btn-primary">Update</button>
                   <button type="button" (click)="canclEdit()" class="btn btn-danger">Cancel</button>
                 </div>
               </div>
