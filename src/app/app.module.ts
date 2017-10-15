@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import  { NavbarComponent } from './shared/navbar/navbar.component';
 import { ErrorComponent } from './error/error.component';
+import { BlogDetailsComponent } from './blogDetails/blogDetails.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    ErrorComponent
+    ErrorComponent,
+    BlogDetailsComponent
   ],
   imports: [
     BrowserModule,
