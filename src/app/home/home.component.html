@@ -1,4 +1,21 @@
 <nav-bar></nav-bar>
-<div>
+<!-- <div>
   <img src="assets/images/game.jpg" />
+</div> -->
+
+<div class="row" class="container">
+  <h1>Recent Posts</h1>
+    <div style="">
+        <div style="margin-top: 15px; width: 20rem; display: inline-block; margin-left: 15px; min-height: 100px" *ngFor="let post of blogPosts">
+            <div class="card" style="width: 20rem;">
+                <img class="card-img-top" style="min-height: 15rem" [src]="post.img" alt="Card image cap">
+                <div class="card-body">
+                    <h4 (click)="choosePost(post)" style="cursor: pointer" class="card-title">{{post.title}}</h4>
+                    <p class="card-text">{{post.content | truncate: 130}}</p>
+                    <button (click)="editPost(post)" class="btn btn-primary">Edit</button>
+                    <button (click)="deletePost(post)" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
